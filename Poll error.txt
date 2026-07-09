@@ -1,0 +1,96 @@
+Admin dashboard Poll error:-
+
+
+1. ## Error Type
+Console Error
+
+## Error Message
+<button> cannot contain a nested <button>.
+See this log for the ancestor stack trace.
+
+
+    at button (<anonymous>:null:null)
+    at <unknown> (app/admin/live/page.tsx:317:17)
+    at Array.map (<anonymous>:null:null)
+    at AdminLivePage (app/admin/live/page.tsx:316:22)
+
+## Code Frame
+  315 |               )}
+  316 |               {items.map((item) => (
+> 317 |                 <button
+      |                 ^
+  318 |                   key={item._id}
+  319 |                   onClick={() => setSelectedId(item._id)}
+  320 |                   className={cn(
+
+Next.js version: 16.2.10 (Turbopack)
+
+
+2.## Error Type
+Console Error
+
+## Error Message
+In HTML, <button> cannot be a descendant of <button>.
+This will cause a hydration error.
+
+  ...
+    <RedirectErrorBoundary router={{...}}>
+      <InnerLayoutRouter url="/admin/live" tree={[...]} params={{}} cacheNode={{rsc:Promise, ...}} segmentPath={[...]} ...>
+        <SegmentViewNode type="page" pagePath="admin/live...">
+          <SegmentTrieNode>
+          <ClientPageRoot Component={function AdminLivePage} serverProvidedParams={{...}}>
+            <AdminLivePage params={Promise} searchParams={Promise}>
+              <div className="space-y-6">
+                <div>
+                <div>
+                <div className="grid gap-6...">
+                  <div className="space-y-6 ...">
+                    <Card>
+                    <Card>
+                      <div data-slot="card" data-size="default" className={"group/ca..."}>
+                        <CardHeader>
+                        <CardContent className="space-y-2">
+                          <div data-slot="card-content" className="px-(--card...">
+>                           <button
+>                             onClick={function onClick}
+>                             className="w-full rounded-md border p-3 text-left text-sm transition-colors border-prima..."
+>                           >
+                              <div>
+                              <p>
+                              <Button size="sm" variant="outline" className="mt-2" onClick={function onClick}>
+                                <Button data-slot="button" className={"group/bu..."} onClick={function onClick}>
+>                                 <button
+>                                   type="button"
+>                                   onClick={function}
+>                                   onMouseDown={function}
+>                                   onKeyDown={function}
+>                                   onKeyUp={function}
+>                                   onPointerDown={function}
+>                                   tabIndex={0}
+>                                   disabled={false}
+>                                   data-slot="button"
+>                                   ref={function}
+>                                   className={"group/button inline-flex shrink-0 items-center justify-center border ..."}
+>                                 >
+                  ...
+        ...
+      ...
+
+
+
+    at button (<anonymous>:null:null)
+    at Button (components/ui/button.tsx:50:5)
+    at <unknown> (app/admin/live/page.tsx:338:21)
+    at Array.map (<anonymous>:null:null)
+    at AdminLivePage (app/admin/live/page.tsx:316:22)
+
+## Code Frame
+  48 | }: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+  49 |   return (
+> 50 |     <ButtonPrimitive
+     |     ^
+  51 |       data-slot="button"
+  52 |       className={cn(buttonVariants({ variant, size, className }))}
+  53 |       {...props}
+
+Next.js version: 16.2.10 (Turbopack)

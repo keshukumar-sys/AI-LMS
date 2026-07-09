@@ -1,0 +1,23 @@
+3 days session in oman which is divided into 3 parts 
+Ai fundamentals
+Ai formulation
+Ai hands on
+first day atharv will tell What is AI? what its history?
+
+2nd day atharv will give the demo for chatgpt,gemini,claude etc. telling about prompt engineering. How it is powerful?
+
+3rd day atharv will tell about the Ai automation
+
+executives of big companies are coming there so, I am  going to do the marketing of ai_lms
+
+unke pas ek platform ho aur courses related to ai Jahan wo ai se sabkuch puchh sakte hain
+main backend se unko ppt de raha hun day1 ppt,materials,information,notes same for day2&3
+wahin pe unko quizzes khilaun, goals khilaun, wo pura aspect main apne lms pe lana chata hun , 
+this is just small no. of features I can expand it with more no. of features.main usko as a saas aage lejana chahta hun.
+
+student dashboard should divided for 3days day1 materials, day2 tutor, day3 different information related to this
+3 days materials in 3 sections, 4th section for quizzes, assessment so that main as a admin live usko monitor bhi kar paun.
+
+2 dashboard- 1st for admin jo atharv will control jisme he can upload files, assessment,lessons, and 2nd for students jo unko harek chiz dikhayega
+
+And this product is going to be use by them so mak sure it should be work very fine.
