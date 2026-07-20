@@ -1,7 +1,9 @@
+import Link from "next/link";
 import { ObjectId } from "mongodb";
 import { Award, Zap, Trophy, BookCheck } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { getSession } from "@/lib/auth";
 import { coursesCol, progressCol, usersCol } from "@/lib/models";
 import { ModuleCompletionChart, QuizScoreChart } from "@/components/progress/progress-charts";
@@ -50,10 +52,18 @@ export default async function StudentProgressPage() {
           <h1 className="font-heading text-2xl font-semibold tracking-tight">Progress</h1>
           <p className="text-sm text-muted-foreground">Your curriculum completion, quiz scores, and badges.</p>
         </div>
-        <Badge variant="outline" className="gap-1.5 text-sm">
-          <Zap className="size-3.5 text-amber-500" />
-          {userDoc?.xp ?? 0} XP total
-        </Badge>
+        <div className="flex items-center gap-2">
+          <Badge variant="outline" className="gap-1.5 text-sm">
+            <Zap className="size-3.5 text-amber-500" />
+            {userDoc?.xp ?? 0} XP total
+          </Badge>
+          <Link href="/student/leaderboard">
+            <Button variant="outline" size="sm" className="gap-1.5">
+              <Trophy className="size-3.5 text-amber-500" />
+              Leaderboard
+            </Button>
+          </Link>
+        </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">

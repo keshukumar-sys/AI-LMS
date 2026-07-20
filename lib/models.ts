@@ -15,6 +15,9 @@ export interface UserDoc {
   xp: number;
   createdAt: Date;
   lastLoginAt?: Date;
+  currentStreak?: number;
+  longestStreak?: number;
+  lastActiveDate?: string; // "YYYY-MM-DD", drives streak calculation
 }
 
 // ---------- Courses (self-paced catalog, admin-authored) ----------
@@ -213,6 +216,84 @@ export interface ProgressDoc {
   completedAt?: Date;
 }
 
+// ---------- Module assessments (question bank, MongoDB-backed) ----------
+
+export type QuestionType = "mcq" | "scenario" | "practical" | "subjective" | "ai_challenge";
+
+export interface QuestionOption {
+  id: string;
+  text: string;
+}
+
+export interface QuestionDoc {
+  _id?: ObjectId;
+  moduleId: string; // matches curriculum module ids, e.g. "m1-ai-foundations"
+  questionType: QuestionType;
+  questionText: string;
+  options?: QuestionOption[]; // mcq only
+  correctAnswer?: string; // mcq only - a QuestionOption.id
+  marks: number;
+  order: number;
+  createdAt: Date;
+}
+
+export type AttemptStatus = "in_progress" | "submitted" | "graded";
+
+export interface AttemptAiEvaluation {
+  technicalAccuracy: number;
+  reasoning: number;
+  practicalApplication: number;
+  creativity: number;
+  ethics: number;
+  feedback: string;
+}
+
+export interface AttemptAnswer {
+  questionId: string;
+  questionType: QuestionType;
+  selectedOptionId?: string;
+  answerText?: string;
+  isCorrect?: boolean;
+  marksAwarded?: number;
+  aiEvaluation?: AttemptAiEvaluation;
+  answeredAt?: Date;
+}
+
+export interface AssessmentSectionScores {
+  mcq: number;
+  scenario: number;
+  practical: number;
+  subjective: number;
+  challenge: number;
+}
+
+export interface AssessmentAttemptDoc {
+  _id?: ObjectId;
+  userId: string;
+  moduleId: string;
+  attemptNumber: number;
+  status: AttemptStatus;
+  startedAt: Date;
+  submittedAt?: Date;
+  timeLimitSec: number;
+  answers: AttemptAnswer[];
+  sectionScores?: AssessmentSectionScores;
+  totalScore?: number; // 0-100, straight rubric sum
+  finalScore?: number; // 0-100, weighted per the course scoring formula
+  xpAwarded: number;
+  createdAt: Date;
+}
+
+export interface XpLedgerDoc {
+  _id?: ObjectId;
+  userId: string;
+  amount: number;
+  reason: string;
+  moduleId?: string;
+  attemptId?: string;
+  createdAt: Date;
+}
+
 // ---------- AI Practitioner Program registrations ----------
 
 export type ExperienceLevel = "beginner" | "intermediate" | "advanced";
@@ -284,4 +365,19 @@ export async function progressCol() {
 export async function registrationsCol() {
   const db = await getDb();
   return db.collection<RegistrationDoc>("registrations");
+}
+
+export async function questionsCol() {
+  const db = await getDb();
+  return db.collection<QuestionDoc>("questions");
+}
+
+export async function assessmentAttemptsCol() {
+  const db = await getDb();
+  return db.collection<AssessmentAttemptDoc>("assessmentAttempts");
+}
+
+export async function xpLedgerCol() {
+  const db = await getDb();
+  return db.collection<XpLedgerDoc>("xpLedger");
 }
