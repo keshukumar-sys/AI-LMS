@@ -72,7 +72,15 @@ export function AppShell({
 
       <div className="relative z-10 flex min-w-0 flex-1 flex-col">
         <header className="glass-panel sticky top-0 z-10 flex h-16 items-center justify-between border-b border-border px-4 md:px-6">
-          <div className="text-sm font-medium text-muted-foreground capitalize">{role} workspace</div>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5 md:hidden">
+              <span className="brand-gradient flex size-8 items-center justify-center rounded-xl shadow-[0_2px_10px_-2px_rgb(79_70_229_/_0.45)]">
+                <Sparkles className="size-4.5 text-white" />
+              </span>
+              <span className="font-heading font-semibold tracking-tight">Hands-on Practice</span>
+            </div>
+            <div className="text-sm font-medium text-muted-foreground capitalize">{role} workspace</div>
+          </div>
           <div className="flex items-center gap-3">
             {role === "student" && typeof profile.xp === "number" && (
               <span className="flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-700 shadow-sm ring-1 ring-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:ring-amber-800">

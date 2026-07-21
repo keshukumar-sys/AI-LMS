@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Adaptive AI LMS Generator",
+  title: "Hands-on Practice",
   description: "AI-powered, KPI-linked learning platform prototype",
 };
 
