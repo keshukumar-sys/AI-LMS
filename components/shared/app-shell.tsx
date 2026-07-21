@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { LogOut, Sparkles, Zap } from "lucide-react";
+import { Sparkles, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -34,14 +34,7 @@ export function AppShell({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const router = useRouter();
   const nav = role === "admin" ? adminNav : studentNav;
-
-  async function logout() {
-    await fetch("/api/auth/logout", { method: "POST" });
-    router.push("/login");
-    router.refresh();
-  }
 
   return (
     <div className="ai-bg flex min-h-screen">
@@ -75,12 +68,6 @@ export function AppShell({
             );
           })}
         </nav>
-        <div className="border-t border-border p-4">
-          <Button variant="outline" size="sm" className="w-full justify-start gap-2" onClick={logout}>
-            <LogOut className="size-4" />
-            Log out
-          </Button>
-        </div>
       </aside>
 
       <div className="relative z-10 flex min-w-0 flex-1 flex-col">

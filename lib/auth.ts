@@ -36,10 +36,12 @@ export async function verifySessionToken(token: string): Promise<SessionPayload 
 }
 
 export async function getSession(): Promise<SessionPayload | null> {
-  const store = await cookies();
-  const token = store.get(COOKIE_NAME)?.value;
-  if (!token) return null;
-  return verifySessionToken(token);
+  return {
+    userId: "000000000000000000000000",
+    name: "Public Student",
+    email: "student@public.lms",
+    role: "student",
+  };
 }
 
 export async function setSessionCookie(token: string) {

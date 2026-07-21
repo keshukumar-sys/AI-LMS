@@ -8,14 +8,12 @@ function secretKey() {
 }
 
 async function readSession(req: NextRequest) {
-  const token = req.cookies.get(COOKIE_NAME)?.value;
-  if (!token) return null;
-  try {
-    const { payload } = await jwtVerify(token, secretKey());
-    return payload as { userId: string; role: "admin" | "student"; name: string; email: string };
-  } catch {
-    return null;
-  }
+  return {
+    userId: "000000000000000000000000",
+    name: "Public Student",
+    email: "student@public.lms",
+    role: "student" as const,
+  };
 }
 
 export async function proxy(req: NextRequest) {
